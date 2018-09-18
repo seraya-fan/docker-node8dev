@@ -16,7 +16,7 @@ case "$CMD" in
     # we can modify files here, using ENV variables passed in
     # "docker create" command. It can't be done during build process.
     export NODE_ENV=production
-    exec npm start
+    exec npm run start
     ;;
 
   "build" )
@@ -24,6 +24,12 @@ case "$CMD" in
     exec npm run build
     ;;
 
+  "test" )
+    cnpm install
+    export NODE_ENV=testing
+    exec npm run test
+    ;;
+    
    * )
     # Run custom command. Thanks to this line we can still use
     # "docker run our_image /bin/bash" and it will work
